@@ -5,6 +5,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {ContextReplacementPlugin} = require('webpack');
 const {TsConfigPathsPlugin} = require('awesome-typescript-loader');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 
 module.exports = {
   context: path.resolve(__dirname, '../src'),
@@ -39,10 +41,13 @@ module.exports = {
       {
         test: /\.scss$/,
         use: ['raw-loader', 'sass-loader']
-        // use: ExtractTextWebpackPlugin.extract({
-        //   fallback: 'style-loader',
-        //   use: ['raw-loader', 'sass-loader']
-        // })
+      },
+      {
+        test: /\.css$/,
+        use: ExtractTextWebpackPlugin.extract({
+          fallback: 'style-loader',
+          use: ['raw-loader', 'css-loader']
+        })
       }
     ]
   },
@@ -65,6 +70,19 @@ module.exports = {
       /\@angular(\\|\/)core(\\|\/)esm5/, 
       path.join(__dirname, '../src')
     ),
-    // new ExtractTextWebpackPlugin('[name].css')
+    new CopyWebpackPlugin([
+      {
+        from: '../node_modules/bootstrap/dist/css/bootstrap.min.css',
+        to: 'vendor/bootstrap/css/bootstrap.min.css'
+      },
+      {
+        from: 'resume.css'
+      }
+    ]),
+    new HtmlWebpackIncludeAssetsPlugin({
+      assets: ['resume.css'],
+      append: true
+    }),
+    new ExtractTextWebpackPlugin('[name].css')
   ]
 };
