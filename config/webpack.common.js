@@ -70,19 +70,19 @@ module.exports = {
       /\@angular(\\|\/)core(\\|\/)esm5/, 
       path.join(__dirname, '../src')
     ),
-    new CopyWebpackPlugin([
-      {
-        from: '../node_modules/bootstrap/dist/css/bootstrap.min.css',
-        to: 'vendor/bootstrap/css/bootstrap.min.css'
-      },
-      {
-        from: 'resume.css'
-      }
-    ]),
-    new HtmlWebpackIncludeAssetsPlugin({
-      assets: ['resume.css'],
-      append: true
-    }),
+    // new CopyWebpackPlugin([
+    //   // {
+    //   //   from: '../node_modules/bootstrap/dist/css/bootstrap.min.css',
+    //   //   to: 'vendor/bootstrap/css/bootstrap.min.css'
+    //   // },
+    //   {
+    //     from: 'resume.css'
+    //   }
+    // ]),
+    // new HtmlWebpackIncludeAssetsPlugin({
+    //   assets: ['resume.css'],
+    //   append: true
+    // }),
     new ExtractTextWebpackPlugin('[name].css')
   ]
 };
