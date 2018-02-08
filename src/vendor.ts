@@ -13,3 +13,4 @@ import 'rxjs';
 // You can import js, ts, css, sass, ...
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './scss/resume.scss';

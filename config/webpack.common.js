@@ -76,11 +76,11 @@ module.exports = {
     //   //   to: 'vendor/bootstrap/css/bootstrap.min.css'
     //   // },
     //   {
-    //     from: 'resume.css'
+    //     from: 'scss/**'
     //   }
     // ]),
     // new HtmlWebpackIncludeAssetsPlugin({
-    //   assets: ['resume.css'],
+    //   assets: ['resume.scss'],
     //   append: true
     // }),
     new ExtractTextWebpackPlugin('[name].css')
